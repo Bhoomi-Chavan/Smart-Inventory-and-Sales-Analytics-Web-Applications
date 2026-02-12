@@ -1,0 +1,84 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Smart_Inventory_and_Sales_Analytics_Web_Applications.SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - Smart Inventory System</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="bg-light">
+    <form id="form1" runat="server">
+        <div class="d-flex min-vh-100">
+            
+            <aside class="bg-dark text-white p-3 shadow-sm" style="width: 260px;">
+                <div class="text-center my-3">
+                    <h4><i class="fas fa-boxes text-primary"></i> Smart Inventory</h4>
+                    <hr class="text-secondary" />
+                </div>
+                
+                <ul class="nav flex-column gap-2 mt-4">
+                    <li class="nav-item">
+                        <a href="Default.aspx" class="nav-link text-white"><i class="fas fa-chart-line me-2"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="Categories.aspx" class="nav-link text-white"><i class="fas fa-tags me-2"></i> Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="Products.aspx" class="nav-link text-white"><i class="fas fa-box me-2"></i> Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="Sales.aspx" class="nav-link text-white"><i class="fas fa-shopping-cart me-2"></i> POS / Sales</a>
+                    </li>
+                    
+                    <li class="nav-item mt-5">
+                         <asp:LinkButton ID="btnLogoutSidebar" runat="server"  class="nav-link text-danger" OnClick="btnLogout_Click" Visible="false">
+                             <i class="fas fa-sign-out-alt me-2"></i> Logout
+                         </asp:LinkButton>
+                    </li>
+                </ul>
+            </aside>
+
+            <main class="flex-grow-1">
+                
+                <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4 px-4 py-3">
+                    <div class="container-fluid">
+                        <h5 class="navbar-brand mb-0 text-secondary fw-bold"><%: Page.Title %></h5>
+                        
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle fw-bold text-dark" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user-circle text-primary me-2"></i> 
+                                    <%: Session["User"] ?? "Guest" %> </a>
+                                <ul class="dropdown-menu dropdown-menu-end shadow border-0" aria-labelledby="userDropdown">
+                                    <li><a class="dropdown-item" <li><a class="dropdown-item" href="Profile.aspx"><i class="fas fa-user-cog me-2"></i>Profile Settings</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <asp:LinkButton ID="lnkHeaderLogout" runat="server" CssClass="dropdown-item text-danger" OnClick="btnLogout_Click">
+                                            <i class="fas fa-sign-out-alt me-2"></i> Logout
+                                        </asp:LinkButton>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        </div>
+                </nav>
+
+                <div class="container-fluid px-4 pb-5">
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+                
+            </main>
+        </div>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
